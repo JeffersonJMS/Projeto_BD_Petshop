@@ -2,20 +2,20 @@ package br.cesed.unifacisa.bd2.petshop.beans;
 
 public class VendaAnimal {
 
-	private long notaFiscal;
+	private Integer notaFiscal;
 	private String regAnimal;
-	private long matFunc;
-	private int dia;
-	private int mes;
-	private int ano;
-	private double comissaoA;
-	private double desconto;
-	private double valorFinal;
+	private Long matFunc;
+	private Integer dia;
+	private Integer mes;
+	private Integer ano;
+	private Double comissaoA;
+	private Double desconto;
+	private Double valorFinal;
 	
-	public long getNotaFiscal() {
+	public Integer getNotaFiscal() {
 		return notaFiscal;
 	}
-	public void setNotaFiscal(long notaFiscal) {
+	public void setNotaFiscal(Integer notaFiscal) {
 		this.notaFiscal = notaFiscal;
 	}
 	public String getRegAnimal() {
@@ -24,46 +24,46 @@ public class VendaAnimal {
 	public void setRegAnimal(String regAnimal) {
 		this.regAnimal = regAnimal;
 	}
-	public long getMatFunc() {
+	public Long getMatFunc() {
 		return matFunc;
 	}
-	public void setMatFunc(long matFunc) {
+	public void setMatFunc(Long matFunc) {
 		this.matFunc = matFunc;
 	}
-	public int getDia() {
+	public Integer getDia() {
 		return dia;
 	}
-	public void setDia(int dia) {
+	public void setDia(Integer dia) {
 		this.dia = dia;
 	}
-	public int getMes() {
+	public Integer getMes() {
 		return mes;
 	}
-	public void setMes(int mes) {
+	public void setMes(Integer mes) {
 		this.mes = mes;
 	}
-	public int getAno() {
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public double getComissaoA() {
+	public Double getComissaoA() {
 		return comissaoA;
 	}
-	public void setComissaoA(double comissaoA) {
+	public void setComissaoA(Double comissaoA) {
 		this.comissaoA = comissaoA;
 	}
-	public double getDesconto() {
+	public Double getDesconto() {
 		return desconto;
 	}
-	public void setDesconto(double desconto) {
+	public void setDesconto(Double desconto) {
 		this.desconto = desconto;
 	}
-	public double getValorFinal() {
+	public Double getValorFinal() {
 		return valorFinal;
 	}
-	public void setValorFinal(double valorFinal) {
+	public void setValorFinal(Double valorFinal) {
 		this.valorFinal = valorFinal;
 	}
 	

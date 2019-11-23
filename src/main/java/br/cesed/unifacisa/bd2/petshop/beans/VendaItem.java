@@ -2,69 +2,69 @@ package br.cesed.unifacisa.bd2.petshop.beans;
 
 public class VendaItem {
 
-	private long ntFiscal;
-	private long itemCod;
-	private long funcMat;
-	private int dia;
-	private int mes;
-	private int ano;
-	private double comissaoL;
-	private double desconto;
-	private double valorF;
+	private Long ntFiscal;
+	private Long itemCod;
+	private Long funcMat;
+	private Integer dia;
+	private Integer mes;
+	private Integer ano;
+	private Double comissaoL;
+	private Double desconto;
+	private Double valorF;
 	
-	public long getNtFiscal() {
+	public Long getNtFiscal() {
 		return ntFiscal;
 	}
-	public void setNtFiscal(long ntFiscal) {
+	public void setNtFiscal(Long ntFiscal) {
 		this.ntFiscal = ntFiscal;
 	}
-	public long getItemCod() {
+	public Long getItemCod() {
 		return itemCod;
 	}
-	public void setItemCod(long itemCod) {
+	public void setItemCod(Long itemCod) {
 		this.itemCod = itemCod;
 	}
-	public long getFuncMat() {
+	public Long getFuncMat() {
 		return funcMat;
 	}
-	public void setFuncMat(long funcMat) {
+	public void setFuncMat(Long funcMat) {
 		this.funcMat = funcMat;
 	}
-	public int getDia() {
+	public Integer getDia() {
 		return dia;
 	}
-	public void setDia(int dia) {
+	public void setDia(Integer dia) {
 		this.dia = dia;
 	}
-	public int getMes() {
+	public Integer getMes() {
 		return mes;
 	}
-	public void setMes(int mes) {
+	public void setMes(Integer mes) {
 		this.mes = mes;
 	}
-	public int getAno() {
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public double getComissaoL() {
+	public Double getComissaoL() {
 		return comissaoL;
 	}
-	public void setComissaoL(double comissaoL) {
+	public void setComissaoL(Double comissaoL) {
 		this.comissaoL = comissaoL;
 	}
-	public double getDesconto() {
+	public Double getDesconto() {
 		return desconto;
 	}
-	public void setDesconto(double desconto) {
+	public void setDesconto(Double desconto) {
 		this.desconto = desconto;
 	}
-	public double getValorF() {
+	public Double getValorF() {
 		return valorF;
 	}
-	public void setValorF(double valorF) {
+	public void setValorF(Double valorF) {
 		this.valorF = valorF;
 	}
-
+	
 }

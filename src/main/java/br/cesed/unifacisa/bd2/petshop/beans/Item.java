@@ -2,18 +2,18 @@ package br.cesed.unifacisa.bd2.petshop.beans;
 
 public class Item {
 
-	private long codigo;
+	private Integer codigo;
 	private String descricao;
 	private String tipo;
-	private double precoFornecedor;
-	private double precoLoja;
+	private Double precoFornecedor;
+	private Double precoLoja;
 	private String validade;
 	private Integer quantidade;
 	
-	public long getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(long codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	public String getDescricao() {
@@ -28,16 +28,16 @@ public class Item {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public double getPrecoFornecedor() {
+	public Double getPrecoFornecedor() {
 		return precoFornecedor;
 	}
-	public void setPrecoFornecedor(double precoFornecedor) {
+	public void setPrecoFornecedor(Double precoFornecedor) {
 		this.precoFornecedor = precoFornecedor;
 	}
-	public double getPrecoLoja() {
+	public Double getPrecoLoja() {
 		return precoLoja;
 	}
-	public void setPrecoLoja(double precoLoja) {
+	public void setPrecoLoja(Double precoLoja) {
 		this.precoLoja = precoLoja;
 	}
 	public String getValidade() {

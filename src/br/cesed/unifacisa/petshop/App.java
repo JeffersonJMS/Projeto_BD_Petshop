@@ -8,9 +8,10 @@ public class App {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		try {
 			Connection con = Conecta.criarConexao();
-		} catch (Exception e) {
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e){
+			e.printStackTrace();
 		}
-		
 	}
-
 }

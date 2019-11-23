@@ -36,19 +36,15 @@ public class AnimalDAO {
 		}
 		atributos = atributos.substring(0, atributos.length() -1);
 		atributos = atributos + ")";
-		//REMOVER ULTIMA VIRGULA
 		valores = valores.substring(0,valores.length() - 1);
 		valores = valores + ")";
 		sql = sql + atributos + valores;
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			preparador.execute();
-			
-			
-			
+			preparador.close();
 		}catch(SQLException e){
 			System.out.println("Erro" + e.getMessage());
-			
 		}
 	}
 

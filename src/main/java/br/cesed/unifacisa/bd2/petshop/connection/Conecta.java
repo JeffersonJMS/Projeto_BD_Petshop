@@ -1,4 +1,4 @@
-package br.cesed.unifacisa.petshop.connection;
+package br.cesed.unifacisa.bd2.petshop.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

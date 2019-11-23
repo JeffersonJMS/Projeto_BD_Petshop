@@ -1,4 +1,4 @@
-package br.cesed.unifacisa.petshop.beans;
+package br.cesed.unifacisa.bd2.petshop.beans;
 
 public class Animal {
 

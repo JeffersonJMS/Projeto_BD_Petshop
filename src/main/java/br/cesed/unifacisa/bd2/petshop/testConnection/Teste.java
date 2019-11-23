@@ -1,9 +1,9 @@
-package br.cesed.unifacisa.petshop.testeConnection;
+package br.cesed.unifacisa.bd2.petshop.testConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import br.cesed.unifacisa.petshop.connection.Conecta;
+import br.cesed.unifacisa.bd2.petshop.connection.Conecta;
 
 public class Teste {
 

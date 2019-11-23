@@ -3,6 +3,8 @@ package br.cesed.unifacisa.petshop;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import br.cesed.unifacisa.petshop.connection.Conecta;
+
 public class App {
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {

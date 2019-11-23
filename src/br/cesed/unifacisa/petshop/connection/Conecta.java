@@ -1,4 +1,4 @@
-package br.cesed.unifacisa.petshop;
+package br.cesed.unifacisa.petshop.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class Conecta {
 		Connection conecta = DriverManager.getConnection(URL,USER,PASS);
 		
 		if(conecta != null) {
-			System.out.println("Conex�o efetuada com sucesso");
+			System.out.println("Conexao efetuada com sucesso");
 			return conecta;
 		}
 		return null;

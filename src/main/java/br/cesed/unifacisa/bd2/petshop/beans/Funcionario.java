@@ -2,19 +2,20 @@ package br.cesed.unifacisa.bd2.petshop.beans;
 
 public class Funcionario {
 
-	private long matricula;
+	private Integer matricula;
 	private String nome;
 	private String endereco;
 	private String telefone;
-	private double salario;
+	private Double salario;
 	private String DtNasc;
 	private String DtAdm;
 	private String funcao;
 	private String DtDemi;
-	public long getMatricula() {
+	
+	public Integer getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(long matricula) {
+	public void setMatricula(Integer matricula) {
 		this.matricula = matricula;
 	}
 	public String getNome() {
@@ -35,10 +36,10 @@ public class Funcionario {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public double getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
-	public void setSalario(double salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 	public String getDtNasc() {

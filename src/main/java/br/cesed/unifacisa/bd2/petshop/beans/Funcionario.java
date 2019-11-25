@@ -7,10 +7,10 @@ public class Funcionario {
 	private String endereco;
 	private String telefone;
 	private Double salario;
-	private String DtNasc;
-	private String DtAdm;
+	private String dtNasc;
+	private String dtAdm;
 	private String funcao;
-	private String DtDemi;
+	private String dtDemi;
 	
 	public Integer getMatricula() {
 		return matricula;
@@ -43,16 +43,16 @@ public class Funcionario {
 		this.salario = salario;
 	}
 	public String getDtNasc() {
-		return DtNasc;
+		return dtNasc;
 	}
 	public void setDtNasc(String dtNasc) {
-		DtNasc = dtNasc;
+		this.dtNasc = dtNasc;
 	}
 	public String getDtAdm() {
-		return DtAdm;
+		return dtAdm;
 	}
 	public void setDtAdm(String dtAdm) {
-		DtAdm = dtAdm;
+		this.dtAdm = dtAdm;
 	}
 	public String getFuncao() {
 		return funcao;
@@ -61,10 +61,10 @@ public class Funcionario {
 		this.funcao = funcao;
 	}
 	public String getDtDemi() {
-		return DtDemi;
+		return dtDemi;
 	}
 	public void setDtDemi(String dtDemi) {
-		DtDemi = dtDemi;
+		this.dtDemi = dtDemi;
 	}
 	
 }

@@ -14,10 +14,13 @@ import br.cesed.unifacisa.bd2.petshop.connection.Conecta;
 public class AnimalDAO {
 	
 	
-	public void cadastraAnimal(Animal animal) throws SQLException, ClassNotFoundException{
+	public void cadastraAnimal(Animal animal) throws Exception{
 		
 		Connection con = Conecta.criarConexao();
 		String sql = "INSERT INTO animal(";
+		if(animal.getRegistro() == null || animal.getRaca() == null || animal.getTipo() == null) {
+			throw new Exception("Dados invalidos");
+		}
 		String atributos = "registro,raca,tipo,";
 		String valores =" VALUES(" + animal.getRegistro().toString() + "," + "'"+animal.getRaca().toString() +"'" +  "," + "'"+animal.getTipo().toString() +"'"+ ",";
 		if(animal.getPeso() != null) {

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.cesed.unifacisa.bd2.petshop.beans.Animal;
 import br.cesed.unifacisa.bd2.petshop.beans.Funcionario;
 import br.cesed.unifacisa.bd2.petshop.connection.Conecta;
 
@@ -30,11 +29,35 @@ public class FuncionarioDAO {
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			if(funcionario.getSalario() == null) {
-				
+				preparador.setInt(1, funcionario.getMatricula());
+				preparador.setString(2, funcionario.getNome());
+				preparador.setString(3, funcionario.getEndereco()); 
+				preparador.setString(4, funcionario.getTelefone());
+				preparador.setString(5, funcionario.getDtNasc());
+				preparador.setString(6, funcionario.getDtAdm());
+				preparador.setString(7, funcionario.getFuncao());
+				preparador.setString(8, funcionario.getDtDemi());
 			}else if(funcionario.getTelefone() == null) {
-				
+				preparador.setInt(1, funcionario.getMatricula());
+				preparador.setString(2, funcionario.getNome());
+				preparador.setString(3, funcionario.getEndereco()); 
+				preparador.setDouble(4, funcionario.getSalario());
+				preparador.setString(5, funcionario.getDtNasc());
+				preparador.setString(6, funcionario.getDtAdm());
+				preparador.setString(7, funcionario.getFuncao());
+				preparador.setString(8, funcionario.getDtDemi());
 			}
-			//LOGICA DE SETAR OS ATRIBUTOS
+			
+			preparador.setInt(1, funcionario.getMatricula());
+			preparador.setString(2, funcionario.getNome());
+			preparador.setString(3, funcionario.getEndereco()); 
+			preparador.setString(4, funcionario.getTelefone());
+			preparador.setDouble(5, funcionario.getSalario());
+			preparador.setString(6, funcionario.getDtNasc());
+			preparador.setString(7, funcionario.getDtAdm());
+			preparador.setString(8, funcionario.getFuncao());
+			preparador.setString(9, funcionario.getDtDemi());
+			
 			preparador.execute();
 			
 			

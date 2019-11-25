@@ -1,0 +1,20 @@
+CREATE OR REPLACE FUNCTION atualiza_salario()
+RETURNS TRIGGER AS $$
+BEGIN
+	IF NEW.funcao = 'Gerente' THEN 
+		UPDATE funcionario SET salario = 6000;
+	ELSIF NEW.funcao = 'Cuidador' THEN 
+		UPDATE funcionario SET salario = 3000;
+	ELSIF NEW.funcao = 'Atendente' THEN
+		UPDATE funcionario SET salario = 1300;
+	ELSE 
+		RAISE EXCEPTION 'A função passada não existe';
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER funcionario_atualizado
+AFTER UPDATE ON funcionario
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_salario();

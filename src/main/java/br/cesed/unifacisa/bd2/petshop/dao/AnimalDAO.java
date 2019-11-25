@@ -66,7 +66,7 @@ public class AnimalDAO {
 	}
 	
 	public List<Animal> getAnimaisPorTipo(String tipo) throws ClassNotFoundException, SQLException{
-		String sql = "SELECT * FROM animal where tipo";
+		String sql = "SELECT * FROM animal where tipo = " + tipo;
 		return getArrayAnimais(sql);
 	}
 	

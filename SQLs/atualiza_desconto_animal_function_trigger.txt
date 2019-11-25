@@ -1,0 +1,22 @@
+CREATE OR REPLACE FUNCTION atualiza_comissao_e_valor_de_venda_animal()
+RETURNS TRIGGER AS $$
+DECLARE
+	preco_venda_animal NUMERIC(10, 2);
+BEGIN
+	SELECT an.preco_venda 
+	INTO preco_venda_animal 
+	FROM animal an 
+	WHERE NEW.reg_animal = an.registro;
+	
+	UPDATE venda_animal 
+	SET valor_final = (preco_venda_animal - (preco_venda_animal * (NEW.desconto / 100))),
+		comissao_a = valor_final * 0.05
+	WHERE NEW.nota_fiscal = nota_fiscal;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER desconto_atualizado
+AFTER UPDATE ON venda_animal
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_comissao_e_valor_de_venda_animal();

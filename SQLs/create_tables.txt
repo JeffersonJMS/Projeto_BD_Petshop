@@ -1,0 +1,62 @@
+CREATE TABLE animal (
+	registro INT primary key,
+	tipo VARCHAR(255),
+	peso NUMERIC(10,2),
+	altura NUMERIC(10,2),
+	dt_ult_med VARCHAR(10),
+	raca VARCHAR(255),
+	preco_compra numeric(10, 2),
+	preco_venda numeric(10, 2),
+	dt_nasc VARCHAR(10)
+);
+
+CREATE TABLE funcionario (
+	matricula INT primary key,
+	nome VARCHAR(255),
+	cpf VARCHAR(255),
+	endereco VARCHAR(255),
+	telefone VARCHAR(20),
+	salario NUMERIC(10, 2),
+	dt_nasc VARCHAR(10),
+	dt_adm VARCHAR(10),
+	funcao VARCHAR(255),
+	dt_demi VARCHAR(10)
+);
+
+CREATE TABLE item(
+	codigo INT primary key,
+	descricao VARCHAR(255),
+	tipo VARCHAR(255),
+	preco_fornecedor NUMERIC(10, 2),
+	preco_loja NUMERIC(10, 2),
+	validade VARCHAR(255),
+	quantidade INT
+);
+
+CREATE TABLE venda_animal (
+	nota_fiscal INT primary key,
+	reg_animal INT,
+	mat_func INT,
+	dia INT,
+	mes INT,
+	ano INT,
+	comissao_a NUMERIC(10, 2),
+	desconto INT,
+	valor_final NUMERIC(10, 2),
+	foreign key (mat_func) references funcionario (matricula),
+	foreign key (reg_animal) references animal (registro)
+);
+
+CREATE TABLE venda_item(
+	nt_fiscal INT primary key,
+	item_cod INT,
+	func_mat INT,
+	dia VARCHAR(2),
+	mes VARCHAR(2),
+	ano VARCHAR(4),
+	comissao_i NUMERIC(10, 2),
+	desconto INT,
+	valor_f NUMERIC(10, 2),
+	foreign key (item_cod) references item (codigo),
+	foreign key (func_mat) references funcionario (matricula)
+);

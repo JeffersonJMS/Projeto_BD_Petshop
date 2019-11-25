@@ -1,0 +1,155 @@
+CREATE TABLE animal (
+	registro INT primary key,
+	tipo VARCHAR(255),
+	peso NUMERIC(10,2),
+	altura NUMERIC(10,2),
+	dt_ult_med VARCHAR(10),
+	raca VARCHAR(255),
+	preco_compra numeric(10, 2),
+	preco_venda numeric(10, 2),
+	dt_nasc VARCHAR(10)
+);
+
+CREATE TABLE funcionario (
+	matricula INT primary key,
+	nome VARCHAR(255),
+	cpf VARCHAR(255),
+	endereco VARCHAR(255),
+	telefone VARCHAR(20),
+	salario NUMERIC(10, 2),
+	dt_nasc VARCHAR(10),
+	dt_adm VARCHAR(10),
+	funcao VARCHAR(255),
+	dt_demi VARCHAR(10)
+);
+
+CREATE TABLE item(
+	codigo INT primary key,
+	descricao VARCHAR(255),
+	tipo VARCHAR(255),
+	preco_fornecedor NUMERIC(10, 2),
+	preco_loja NUMERIC(10, 2),
+	validade VARCHAR(255),
+	quantidade INT
+);
+
+CREATE TABLE venda_animal (
+	nota_fiscal INT primary key,
+	reg_animal INT,
+	mat_func INT,
+	dia INT,
+	mes INT,
+	ano INT,
+	comissao_a NUMERIC(10, 2),
+	desconto INT,
+	valor_final NUMERIC(10, 2),
+	foreign key (mat_func) references funcionario (matricula),
+	foreign key (reg_animal) references animal (registro)
+);
+
+CREATE TABLE venda_item(
+	nt_fiscal INT primary key,
+	item_cod INT,
+	func_mat INT,
+	dia VARCHAR(2),
+	mes VARCHAR(2),
+	ano VARCHAR(4),
+	comissao_i NUMERIC(10, 2),
+	desconto INT,
+	valor_f NUMERIC(10, 2),
+	foreign key (item_cod) references item (codigo),
+	foreign key (func_mat) references funcionario (matricula)
+);
+
+CREATE OR REPLACE FUNCTION atualiza_disponibilidade() 
+RETURNS TRIGGER AS $$
+DECLARE 
+	quantidade_itens INT;
+BEGIN
+	SELECT i.quantidade
+	INTO quantidade_itens
+	FROM item i
+	WHERE i.codigo = NEW.item_cod;
+	
+	IF quantidade_itens = 0 THEN 
+		RAISE EXCEPTION 'Este item nã está mais dosponível em estoque';
+	ELSE 
+		UPDATE item 
+		SET quantidade = quantidade - 1 
+		WHERE codigo = NEW.item_cod;
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER item_vendido
+AFTER INSERT ON venda_item
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_disponibilidade();
+
+CREATE OR REPLACE FUNCTION atualiza_salario()
+RETURNS TRIGGER AS $$
+BEGIN
+	IF NEW.funcao = 'Gerente' THEN 
+		UPDATE funcionario SET salario = 6000;
+	ELSIF NEW.funcao = 'Cuidador' THEN 
+		UPDATE funcionario SET salario = 3000;
+	ELSIF NEW.funcao = 'Atendente' THEN
+		UPDATE funcionario SET salario = 1300;
+	ELSE 
+		RAISE EXCEPTION 'A função passada não existe';
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER funcionario_atualizado
+AFTER UPDATE ON funcionario
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_salario();
+
+CREATE OR REPLACE FUNCTION atualiza_comissao_e_valor_de_venda_animal()
+RETURNS TRIGGER AS $$
+DECLARE
+	preco_venda_animal NUMERIC(10, 2);
+BEGIN
+	SELECT an.preco_venda 
+	INTO preco_venda_animal 
+	FROM animal an 
+	WHERE NEW.reg_animal = an.registro;
+	
+	UPDATE venda_animal 
+	SET valor_final = (preco_venda_animal - (preco_venda_animal * (NEW.desconto / 100))),
+		comissao_a = valor_final * 0.05
+	WHERE NEW.nota_fiscal = nota_fiscal;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER desconto_atualizado
+AFTER UPDATE ON venda_animal
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_comissao_e_valor_de_venda_animal();
+ 
+CREATE OR REPLACE FUNCTION atualiza_comissao_e_valor_de_venda_item()
+RETURNS TRIGGER AS $$
+DECLARE 
+	valor_item_vendido NUMERIC(10, 2);
+BEGIN
+	SELECT i.preco_loja 
+	INTO valor_item_vendido 
+	FROM item i
+	WHERE i.codigo = NEW.item_cod;
+	
+	UPDATE venda_item
+	SET valor_f = (valor_item_vendido - (valor_item_vendido * (NEW.desconto / 100))),
+		comissao_i = valor_f * 0.02
+	WHERE nt_fiscal = NEW.nt_fiscal;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER desconto_item_atualizado
+AFTER UPDATE ON venda_item
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_comissao_e_valor_de_venda_item();

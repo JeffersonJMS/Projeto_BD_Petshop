@@ -1,0 +1,26 @@
+CREATE OR REPLACE FUNCTION atualiza_disponibilidade() 
+RETURNS TRIGGER AS $$
+DECLARE 
+	quantidade_itens INT;
+BEGIN
+	SELECT i.quantidade
+	INTO quantidade_itens
+	FROM item i
+	WHERE i.codigo = NEW.item_cod;
+	
+	IF quantidade_itens = 0 THEN 
+		RAISE EXCEPTION 'Este item nã está mais dosponível em estoque';
+	ELSE 
+		UPDATE item 
+		SET quantidade = quantidade - 1 
+		WHERE codigo = NEW.item_cod;
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER item_vendido
+AFTER INSERT ON venda_item
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_disponibilidade();
+

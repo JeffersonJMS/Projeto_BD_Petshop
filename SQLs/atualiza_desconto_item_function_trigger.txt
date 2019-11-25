@@ -1,0 +1,22 @@
+CREATE OR REPLACE FUNCTION atualiza_comissao_e_valor_de_venda_item()
+RETURNS TRIGGER AS $$
+DECLARE 
+	valor_item_vendido NUMERIC(10, 2);
+BEGIN
+	SELECT i.preco_loja 
+	INTO valor_item_vendido 
+	FROM item i
+	WHERE i.codigo = NEW.item_cod;
+	
+	UPDATE venda_item
+	SET valor_f = (valor_item_vendido - (valor_item_vendido * (NEW.desconto / 100))),
+		comissao_i = valor_f * 0.02
+	WHERE nt_fiscal = NEW.nt_fiscal;
+	RETURN NEW;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER desconto_item_atualizado
+AFTER UPDATE ON venda_item
+FOR EACH ROW
+EXECUTE PROCEDURE atualiza_comissao_e_valor_de_venda_item();

@@ -50,12 +50,9 @@ public class AnimalDAO {
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			preparador.execute();
-			
-			
-			
+			preparador.close();
 		}catch(SQLException e){
 			System.out.println("Erro" + e.getMessage());
-			
 		}
 	}
 	
@@ -93,9 +90,6 @@ public class AnimalDAO {
 		}
 		return animais;
 	}
-	
-	
-	
 	
 	private Animal gerarAnimal(ResultSet resultado) throws SQLException {
 		Animal animal = new Animal();

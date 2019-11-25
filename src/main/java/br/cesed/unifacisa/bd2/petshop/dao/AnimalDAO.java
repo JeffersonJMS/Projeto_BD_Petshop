@@ -91,9 +91,6 @@ public class AnimalDAO {
 		return animais;
 	}
 	
-	
-	
-	
 	private Animal gerarAnimal(ResultSet resultado) throws SQLException {
 		Animal animal = new Animal();
 		animal.setRegistro(resultado.getInt("registro"));

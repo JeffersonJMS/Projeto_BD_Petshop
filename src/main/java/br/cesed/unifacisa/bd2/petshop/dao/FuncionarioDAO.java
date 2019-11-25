@@ -81,9 +81,6 @@ public class FuncionarioDAO {
 		return funcionarios;
 	}
 	
-	
-	
-	
 	private Funcionario gerarFuncionario(ResultSet resultado) throws SQLException {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setMatricula(resultado.getInt("matricula"));

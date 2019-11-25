@@ -2,7 +2,7 @@ package br.cesed.unifacisa.bd2.petshop.beans;
 
 public class VendaItem {
 
-	private Long ntFiscal;
+	private Integer ntFiscal;
 	private Long itemCod;
 	private Long funcMat;
 	private Integer dia;
@@ -12,10 +12,10 @@ public class VendaItem {
 	private Double desconto;
 	private Double valorF;
 	
-	public Long getNtFiscal() {
+	public Integer getNtFiscal() {
 		return ntFiscal;
 	}
-	public void setNtFiscal(Long ntFiscal) {
+	public void setNtFiscal(Integer ntFiscal) {
 		this.ntFiscal = ntFiscal;
 	}
 	public Long getItemCod() {
